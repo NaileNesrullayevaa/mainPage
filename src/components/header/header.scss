@@ -1,0 +1,38 @@
+header {
+    background-color: white !important;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    height: 80px;
+    background-color: #fff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    .top-boxes {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0px 14px;
+
+
+        .right-box {
+            display: flex;
+            align-items: center;
+
+            .boxess {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+
+
+                img {
+                    object-fit: cover;
+                    filter: brightness(1.2);
+                }
+            }
+        }
+    }
+}
