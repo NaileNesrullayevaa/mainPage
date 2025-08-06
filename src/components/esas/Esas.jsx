@@ -1,36 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './esas.scss'
-import list from '../../assets/imgs/list.png'
-import { Table } from 'antd'
-import { Pagination } from 'antd';
-import search from '../../assets/imgs/search.png'
-import group1 from '../../assets/imgs/group1.png'
-import group2 from '../../assets/imgs/group2.png'
-import group3 from '../../assets/imgs/group3.png'
-import group4 from '../../assets/imgs/group4.png'
-import group5 from '../../assets/imgs/group5.png'
-import { getAllPageAsync } from '../redux/slices/mainSlice';
+import list from '../../assets/svgs/list.svg'
+// import { Table } from 'antd'
+// import { Pagination } from 'antd';
+import search2 from '../../assets/svgs/search2.svg'
+import esas1 from '../../assets/svgs/esas1.svg'
+import esas2 from '../../assets/svgs/esas2.svg'
+import esas3 from '../../assets/svgs/esas3.svg'
+import esas4 from '../../assets/svgs/esas4.svg'
+import esas5 from '../../assets/svgs/esas5.svg'
+import passport from '../../assets/svgs/passport.svg'
+import { getAllCategoryAsync, getAllPageAsync } from '../redux/slices/mainSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { Input } from 'antd';
+import { Link, useNavigate } from 'react-router-dom';
+import List from '../../components/list/List'
+import Passport from '../passport/Passport'
+
+
 
 const Esas = () => {
 
-    const dispatch = useDispatch()
-    const data=useSelector(state=>state.main.getAllPage)
-    const dataSource = [
-        {
-            key: '1',
-            name: 'Mike',
-            age: 32,
-            address: '10 Downing Street',
-        },
-        {
-            key: '2',
-            name: 'John',
-            age: 42,
-            address: '10 Downing Street',
-        },
-    ];
+    const [dataType, setDataType] = useState('list')
+    const [isActive, setIsActive] = useState(false);
 
+    const dispatch = useDispatch()
+    const data = useSelector(state => state.main.data)
+    console.log(data)
+    const total = useSelector(state => state.main.total)
+    const [page, setPage] = useState(1)
+    console.log(data)
     const columns = [
         {
             title: '№',
@@ -38,18 +37,18 @@ const Esas = () => {
             key: '№',
         },
         {
-            title: 'Inventor nomresi',
-            dataIndex: 'inventor nomresi',
+            title: 'İnventor nömrəsi',
+            dataIndex: 'id',
             key: 'inventor nomresi',
         },
         {
             title: 'Obyekt adi',
-            dataIndex: 'obyekt adi',
+            dataIndex: 'name',
             key: 'obyekt adi',
         },
         {
-            title: 'Kategoriya',
-            dataIndex: 'kategoriya',
+            title: 'Kateqoriya',
+            dataIndex: 'category',
             key: 'kategoriya',
         },
         {
@@ -58,44 +57,77 @@ const Esas = () => {
             key: 'region',
         },
         {
-            title: 'Isci sayi',
-            dataIndex: 'isci sayi',
+            title: 'İşçi sayı',
+            dataIndex: 'employeeCount',
             key: 'isci sayi',
         },
         {
-            title: 'Balans deyeri',
-            dataIndex: 'balans deyeri',
-            key: 'balans deyeri',
+            title: '',
+            dataIndex: 'googleMapsLink',
+            key: 'googleMapsLink',
         },
     ];
 
-    useEffect(()=>{
-        dispatch(getAllPageAsync())
-    },[])
+    const handeChangeDataType = (type) => {
+        setDataType(type),
+        setIsActive(!isActive)
+    }
+
+    useEffect(() => {
+        dispatch(getAllPageAsync({
+            Page: page,
+            CategoryIds: [
+            ],
+            Order: null,
+            name:data.name,
+            category:data.category
+        }))
+    }, [page])
+
     return (
         <div className='esas'>
             <div className="text">
-                <h2>Esas sehife</h2>
-                <button><img src={list} alt="" /><span>List</span></button>
+                <h2>Əsas səhife</h2>
+                <div className="buttons">
+                    <button onClick={() => handeChangeDataType('list')} className={`one ${isActive ? "active" : ""}`}><img src={list} alt="" /><span>List</span></button>
+                    <button onClick={() => handeChangeDataType('passport')} className={`two ${isActive ? "active2" : ""}`}><img src={passport} alt="" /><span>Passport</span></button>
+                </div>
+
+
             </div>
 
             <div className="boxess">
                 <div className="topp">
-                    <button><h4>Cari muessise sayi</h4><h2>32215</h2></button>
-                    <button><h4>Cemi istifadeci sayi</h4><h2>2007</h2></button>
-                    <button><h4>Temirli</h4><h2>2008</h2></button>
-                    <button><h4>Temirsiz</h4><h2>2007</h2></button>
-                    <button><h4>Qezali</h4><h2>2008</h2></button>
-                    <button className='btn'><span>Axtaris</span><img src={search} alt="" /></button>
-                    <img src={group1} alt="" />
-                    <img src={group2} alt="" />
-                    <img src={group3} alt="" />
-                    <img src={group4} alt="" />
-                    <img src={group5} alt="" />
+                    <div className="one">
+                        <button><h4>Cəmi müəssisə sayı</h4><h2>{total.totalObjects}</h2></button>
+                        <button><h4>Cəmi istifadəçi sayı</h4><h2>{total.totalEmployeeCount}</h2></button>
+                        <button><h4>Təmirli</h4><h2>{total.renovated}</h2></button>
+                        <button><h4>Təmirsiz</h4><h2>{total.unrenovated}</h2></button>
+                        <button><h4>Qəzalı</h4><h2>{total.damaged}</h2></button>
+                    </div>
+                    <div className="two">
+                        <Input className='btn' placeholder="Axtarış" suffix={
+                            <img
+                                src={search2}
+                                alt="icon"
+
+                            />
+                        } />
+                        <img src={esas1} alt="" />
+                        <img src={esas2} alt="" />
+                        <img src={esas3} alt="" />
+                        <img src={esas4} alt="" />
+                        <img src={esas5} alt="" />
+                    </div>
+
+
                 </div>
-                <Table className='table' dataSource={dataSource} columns={columns} />
+                {/* <Table className='table' dataSource={data} columns={columns} /> */}
             </div>
-            <Pagination className='a' defaultCurrent={1} total={50} />
+            {dataType === 'list' && <List />}
+            {dataType === 'passport' && <Passport />}
+
+            {/* <Pagination onChange={(page) => setPage(page)} className='a' defaultCurrent={1} total={total.totalObjects} /> */}
         </div>
     )
 }

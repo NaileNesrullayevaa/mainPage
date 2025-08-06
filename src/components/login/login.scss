@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 .login {
     background-color: #E7E9EF;
     width: 100%;
@@ -15,9 +16,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-     
+
         .right {
-           
+
             .two {
                 margin-right: 5px;
             }
@@ -40,6 +41,7 @@
                 border-radius: 14px;
                 margin: 0px 21px 21px 0px;
                 position: relative;
+
                 .text {
                     position: absolute;
                     bottom: 5px;
@@ -47,14 +49,14 @@
                     left: 50%;
                     transform: translateX(-50%);
 
-                    a{
+                    p{
+                        font-family: SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
                         font-weight: 400;
                         font-style: Regular;
                         font-size: 11px;
                         letter-spacing: 0%;
                         display: inline-block;
                         color: black;
-                        // font-family: SF Pro Display;
 
                     }
                 }
@@ -79,12 +81,13 @@
             position: absolute;
             bottom: 22px;
             right: 35px;
+
             img {
                 margin-right: 18px;
             }
 
             p {
-                font-family: SF Pro Display;
+                font-family: SF Pro Display, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
                 font-weight: 400;
                 font-style: Regular;
                 font-size: 15.63px;

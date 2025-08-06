@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.esas {
+    // width: calc(100% - 80px);
+    width: 100%;
+    background-color: white;
+    height: calc(100vh - 112px);
+    margin: 88.5px 8.5px 24px 0px;
+    border-radius: 8.52px;
+    position: relative;
+
+    
+
+    .boxess {
+        margin: 11px 14px 0px 14px;
+        border: 0.71px solid #4E47E51A;
+        border-radius: 15px !important;
+
+        .topp {
+
+            padding: 8.5px;
+            display: flex;
+            align-items: center;
+
+            button {
+                border-radius: 7px;
+                margin-right: 7px;
+                padding: 4px 78px 16px 4px;
+                position: relative;
+                border: none;
+
+                h4 {
+                    font-family: Roboto;
+                    font-weight: 400;
+                    font-style: Regular;
+                    font-size: 12.79px;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    vertical-align: middle;
+                }
+
+                h2 {
+                    font-family: Roboto;
+                    font-weight: 700;
+                    font-style: Bold;
+                    font-size: 14.21px;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    vertical-align: middle;
+
+                }
+
+                &:nth-child(1),
+                &:nth-child(2) {
+                    background-color: #EDEDFC;
+                }
+
+                &:nth-child(3) {
+                    background-color: #E9F4EE;
+                    padding: 4px 124px 16px 4px;
+
+
+                    h4 {
+                        color: #219653;
+                    }
+
+                    h2 {
+                        color: #219653;
+
+                    }
+                }
+
+                &:nth-child(4) {
+                    background-color: rgba(255, 166, 0, 0.162);
+                    padding: 4px 114px 16px 4px;
+
+                    h4 {
+                        color: #F2994A;
+                    }
+
+                    h2 {
+                        color: #F2994A;
+                    }
+                }
+
+                &:nth-child(5) {
+                    background-color: #FDEEEE;
+                    padding: 4px 122px 16px 4px;
+
+                    h4 {
+                        color: #EB5757;
+
+                    }
+
+                    h2 {
+                        color: #EB5757;
+                    }
+                }
+
+                h4 {
+
+                    color: #8F88FD;
+
+                }
+
+                h2 {
+                    position: absolute;
+                    bottom: 2px;
+                    right: 4px;
+                    color: #4E47E5;
+
+                }
+            }
+
+            .btn {
+                width: 15% !important;
+                padding: 4px 6px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: white;
+                border: 1px solid #CCC9FF;
+
+                // span {
+                //     padding-right: 50px;
+                // }
+            }
+
+            img {
+                padding-right: 7px;
+
+
+            }
+        }
+
+
+    }
+
+    .a {
+        // position: absolute;
+        // left: 14px;
+        // bottom: 14px;
+        margin-top: 14px !important;
+        margin-bottom: 14px !important;
+    }
+
+}
+
+.ant-table-pagination {
+    display: none !important;
+}
+
+.ant-table {
+    border-radius: none !important;
+    font-family: Roboto !important;
+    height: 435px !important;
+    overflow-y: auto;
+
+}
+
+.ant-table-thead {
+    .ant-table-cell {
+        &:last-child {
+            border-radius: 0px !important;
+        }
+
+    }
+
+    th {
+        font-family: Roboto !important;
+        background-color: white !important;
+        border-top: 1px solid #fefefe;
+        border-top: 1px solid #f0f0f0;
+        padding: 5.6px 0px 5.6px 7px !important;
+
+
+
+
+
+        &:nth-child(1) {
+            padding: 5.6px 2.3px 5.6px 5px !important;
+            border-start-start-radius: 0px !important;
+
+
+        }
+
+        &::before {
+            height: 100% !important;
+        }
+    }
+
+
+}
+
+.ant-table-body {
+    .ant-table-cell {
+        border-right: 1px solid #f0f0f0 !important;
+        border-left: 1px solid #f0f0f0 !important;
+
+    }
+}
+
+.ant-input-affix-wrapper {
+    width: 15% !important;
+    margin-right: 7px !important;
+
+    td {
+        border-radius: 0px !important;
+
+    }
+}

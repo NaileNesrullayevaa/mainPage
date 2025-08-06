@@ -1,120 +1,144 @@
 import React from 'react'
 import './login.scss'
-import img1 from '../../assets/imgs/img1.png'
-import img2 from '../../assets/imgs/img2.png'
-import img3 from '../../assets/imgs/img3.png'
-import icon1 from '../../assets/imgs/icon1.png'
-import icon3 from '../../assets/imgs/icon3.png'
-import bank from '../../assets/imgs/bank.png'
+import svg1 from '../../assets/svgs/svg1.svg'
+import svg2 from '../../assets/svgs/svg2.svg'
+import svg3 from '../../assets/svgs/svg3.svg'
+import svg4 from '../../assets/svgs/svg4.svg'
+import svg5 from '../../assets/svgs/svg5.svg'
+import svg6 from '../../assets/svgs/svg6.svg'
 import { Col, Row } from 'antd'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
-  
+
     return (
         <div className='login'>
             <div className="top-box">
                 <div className="left">
-                    <img src={img1} alt="" />
+                    <img src={svg1} alt="" />
 
                 </div>
                 <div className="right">
-                    <img className='two' src={img2} alt="" />
-                    <img src={img3} alt="" />
+                    <img className='two' src={svg2} alt="" />
+                    <img src={svg3} alt="" />
 
                 </div>
             </div>
             <div className="main">
                 <Row className='boxes'>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <Link to="">Filmlərin Dövlət Reyestri</Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <p>Filmlərin Dövlət Reyestri</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <Link to="">Azərbaycan Respublikası ərazisində dövlət mühafizəsinə götürülmüş daşınmaz tarix və mədəniyyət abidələrinin reyestri </Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <p>Azərbaycan Respublikası ərazisində dövlət mühafizəsinə götürülmüş daşınmaz tarix və mədəniyyət abidələrinin reyestri </p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <Link to="">Azərbaycan Respublikasının milli mədəniyyət əmlakının Dövlət Siyahısı </Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <p>Azərbaycan Respublikasının milli mədəniyyət əmlakının Dövlət Siyahısı </p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <Link to=''>Mədəni sərvətlərin mühafizə reyestri</Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <p>Mədəni sərvətlərin mühafizə reyestri</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <Link to="">Azərbaycan qeyri-maddi mədəni irs nümunələrinin Dövlət Reyestri </Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <p>Azərbaycan qeyri-maddi mədəni irs nümunələrinin Dövlət Reyestri </p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <Link to=''>Qalereya və muzey eksponatları reyestri</Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <p>Qalereya və muzey eksponatları reyestri</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <img src={icon1} alt="" /><Link to="/yaradici" >Yaradıcı Sənaye Reyestri</Link>
+                        <Link to="/yaradici">
+                            <div className="box">
+                                <div className="text">
+                                    <img src={svg4} alt="" /><p>Yaradıcı Sənaye Reyestri</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <img src={bank} alt="" /><Link to="">Mədəniyyət müəssisələrinin reyestri</Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <img src={svg5} alt="" /><p>Mədəniyyət müəssisələrinin reyestri</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <Link to=''>Mədəniyyət və incəsənət xadimləri və yaradıcı şəxslərin reyestri</Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <p>Mədəniyyət və incəsənət xadimləri və yaradıcı şəxslərin reyestri</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <Link to="">Azərbaycan xalq, bəstəkar musiqisi və digər yazılı musiqinin not materialları reyestri</Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <p>Azərbaycan xalq, bəstəkar musiqisi və digər yazılı musiqinin not materialları reyestri</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <Link to="">Elektron kataloqların, elektron kitabların və audiokitabların reyestri</Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <p>Elektron kataloqların, elektron kitabların və audiokitabların reyestri</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                     <Col span={6}>
-                        <div className="box">
-                            <div className="text">
-                                <Link to="">QR kod reyestri</Link>
+                        <Link to=''>
+                            <div className="box">
+                                <div className="text">
+                                    <p>QR kod reyestri</p>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </Col>
                 </Row>
             </div>
             <div className="bottom">
                 <div className="button">
-                    <img src={icon3} alt="" /> <p>Analitik tehlil</p>
+                    <img src={svg6} alt="" /> <p>Analitik təhlil</p>
                 </div>
             </div>
 

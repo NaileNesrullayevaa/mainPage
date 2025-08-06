@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.passport {
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .search {
+        border: 1px solid #A8A8A8;
+        border-radius: 16px;
+        padding: 15px;
+        width: 631px;
+
+        h1 {
+            margin-bottom: 20px;
+            color: #181818;
+            font-weight: 500;
+            font-size: 24px;
+            font-family: Roboto, sans-serif;
+        }
+
+        .form {
+            position: relative;
+
+            .input {
+                padding: 4px 11px;
+                border: 1px solid #A8A8A8;
+                border-radius: 10px;
+                height: 48px;
+                width: 100%;
+
+            }
+
+            svg {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+        }
+    }
+}
