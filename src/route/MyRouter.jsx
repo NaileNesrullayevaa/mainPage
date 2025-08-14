@@ -1,10 +1,9 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import MainLayout from '../components/layouts/MainLayout'
-import Login from '../components/login/Login'
-import Esas from '../components/esas/Esas'
-import Passport from '../components/passport/Passport'
-import List from '../components/list/List'
+import Login from '../pages/login/Login'
+import Esas from '../pages/esas/Home'
+import Question from '../pages/question/Question'
 
 const MyRouter = () => {
     return (
@@ -13,9 +12,9 @@ const MyRouter = () => {
 
             <Route path='' element={<MainLayout />}>
 
-                <Route path='yaradici' element={<Esas />} />
-                {/* <Route path='passport' element={<Passport />} /> */}
+                <Route path='yaradici/home' element={<Esas />} />
 
+                <Route path='yaradici/question' element={<Question/>} />
 
 
             </Route>

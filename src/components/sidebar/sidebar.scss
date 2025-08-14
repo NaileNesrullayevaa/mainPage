@@ -3,15 +3,40 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 .sidebar {
-    background-color:white;
+    position: RELATIVE;
+    background-color: white;
     width: 160px;
     height: calc(100vh - 112px);
     margin: 88px 8px 0px 8px;
     border-radius: 8.5px;
     padding: 8px 8px 0px 8px;
+
+    &.close {
+        width: 80px;
+
+        ul {
+
+            li {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+               cursor: pointer;
+               border: 1px solid red;
+                img{
+               
+
+                }
+
+                a {
+                    display: none;
+                }
+            }
+        }
+    }
 
     ul {
         text-decoration: none;
@@ -19,18 +44,26 @@
 
         li {
 
-            &:nth-child(1) {
+            &.active {
                 border: 1px solid #7559EF;
                 background-color: #7559EF;
                 border-radius: 5px;
                 padding: 5px 20px 5px 7px;
                 color: white;
-                img{
+
+                img {
                     color: white;
                 }
+
+                a {
+                    color: white !important;
+                }
             }
-            &:nth-child(3){
-                img{
+
+
+
+            &:nth-child(3) {
+                img {
                     width: 25px;
                     height: 19px;
                 }
@@ -46,11 +79,36 @@
             img {
                 padding-right: 6px;
             }
-            span{
+
+            a {
                 font-family: Roboto;
+                text-decoration: none;
+                color: #828282;
+
             }
 
-       
+
+        }
+    }
+
+    .icons {
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        .icon {
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            padding: 0px 6px;
+            top: 50%;
+            right: -17px;
+            transform: translateY(-50%);
+            color: #c7c7c7;
+            font-size: 32px;
+            font-weight: 700;
+
         }
     }
 }

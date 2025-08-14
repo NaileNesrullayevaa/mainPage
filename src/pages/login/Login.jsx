@@ -16,12 +16,10 @@ const Login = () => {
             <div className="top-box">
                 <div className="left">
                     <img src={svg1} alt="" />
-
                 </div>
                 <div className="right">
                     <img className='two' src={svg2} alt="" />
                     <img src={svg3} alt="" />
-
                 </div>
             </div>
             <div className="main">
@@ -81,7 +79,7 @@ const Login = () => {
                         </Link>
                     </Col>
                     <Col span={6}>
-                        <Link to="/yaradici">
+                        <Link to="yaradici/home">
                             <div className="box">
                                 <div className="text">
                                     <img src={svg4} alt="" /><p>Yaradıcı Sənaye Reyestri</p>

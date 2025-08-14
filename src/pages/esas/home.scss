@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.esas {
+    // width: calc(100% - 80px);
+    height: calc(100vh - 112px);
+    margin: 88px 8.5px 4px 0px;
+    border-radius: 8.52px;
+    position: relative;
+    display: flex;
+    background-color: #E7E9EF !important;
+
+    .left {
+        margin-right: 10px;
+        background-color: white;
+        border-radius: 12px;
+    }
+    .right {
+        background-color: white;
+        border-radius: 12px;
+
+        .text {
+            padding: 9px 14px;
+            display: flex;
+            justify-content: space-between;
+
+            h2 {
+                font-family: Roboto;
+                font-weight: 500;
+                font-style: Medium;
+                font-size: 22.73px;
+                line-height: 100%;
+                letter-spacing: 0%;
+                vertical-align: middle;
+                color: #7559EF;
+
+            }
+
+            .buttons {
+                display: flex;
+                align-items: center;
+
+
+                button {
+                    cursor: pointer;
+                    padding: 5px 10px;
+                    border: none;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                    border: 1px solid #4e47e5;
+                    background-color: white;
+
+                    &.one {
+                        margin-right: 8px;
+                        color: #000;
+
+                        &.active {
+                            background-color: #4e47e5;
+                            color: white;
+
+                            span {
+                                color: white;
+                            }
+
+
+                        }
+
+                    }
+
+                    span {
+                        color: #828282;
+                        padding-left: 7px;
+                    }
+                }
+
+
+            }
+
+        }
+
+        .boxess {
+            margin: 11px 14px 0px 14px;
+            border: 0.71px solid #4E47E51A;
+            border-radius: 15px !important;
+
+            .topp {
+                padding: 8.5px;
+                display: flex;
+
+                .one {
+                    button {
+                        margin-bottom: 5px;
+                        border-radius: 7px;
+                        margin-right: 7px;
+                        padding: 4px 88px 16px 4px;
+                        position: relative;
+                        border: none;
+
+                        h4 {
+                            font-family: Roboto;
+                            font-weight: 400;
+                            font-style: Regular;
+                            font-size: 12.79px;
+                            line-height: 100%;
+                            letter-spacing: 0%;
+                            vertical-align: middle;
+                        }
+
+                        h2 {
+                            font-family: Roboto;
+                            font-weight: 700;
+                            font-style: Bold;
+                            font-size: 14.21px;
+                            line-height: 100%;
+                            letter-spacing: 0%;
+                            vertical-align: middle;
+
+                        }
+
+                        &:nth-child(1),
+                        &:nth-child(2) {
+                            background-color: #EDEDFC;
+                        }
+
+                        &:nth-child(3) {
+                            background-color: #E9F4EE;
+                            padding: 4px 134px 16px 4px;
+
+
+                            h4 {
+                                color: #219653;
+                            }
+
+                            h2 {
+                                color: #219653;
+
+                            }
+                        }
+
+                        &:nth-child(4) {
+                            background-color: rgba(255, 166, 0, 0.162);
+                            padding: 4px 153px 16px 4px;
+
+                            h4 {
+                                color: #F2994A;
+                            }
+
+                            h2 {
+                                color: #F2994A;
+                            }
+                        }
+
+                        &:nth-child(5) {
+                            background-color: #FDEEEE;
+                            padding: 4px 164px 16px 4px;
+
+                            h4 {
+                                color: #EB5757;
+
+                            }
+
+                            h2 {
+                                color: #EB5757;
+                            }
+                        }
+
+                        h4 {
+
+                            color: #8F88FD;
+
+                        }
+
+                        h2 {
+                            position: absolute;
+                            bottom: 2px;
+                            right: 4px;
+                            color: #4E47E5;
+
+                        }
+                    }
+                }
+
+                .two {
+                    display: flex;
+                    justify-content: flex-end;
+
+                    .btnn {
+                        width: 100% !important;
+                        padding: 4px 6px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        background-color: white;
+                        border: 1px solid #CCC9FF;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        .a {
+
+            margin-top: 14px !important;
+            margin-bottom: 14px !important;
+        }
+    }
+}
+
+.ant-modal-content {
+    position: relative;
+    top: 0px !important;
+    left: 0px !important;
+
+    .ant-form-item-required {
+        &::before {
+            display: none !important;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+
+      
+    }
+
+
+}

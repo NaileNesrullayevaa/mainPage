@@ -1,11 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import getAllPage from "../getAllPage"
 import getAllCategory from "../getAllCategory";
+import getAllDepartment from "../getAllDepartment";
+import getAddDepartment from "../getAddDepartment";
 
 const initialState = {
     data: [],
     total: {},
-    category: []
+    category: [],
+    selectedCategoryIds: [],
+    department: [],
+    totalDepartments: null,
+    addDepartment: {}
 }
 
 const mainSlice = createSlice({
@@ -21,6 +27,18 @@ const mainSlice = createSlice({
         },
         setCategory(state, { payload }) {
             state.category = payload
+        },
+        setSelectedCategoryIds(state, { payload }) {
+            state.selectedCategoryIds = payload
+        },
+        setDepartment(state, { payload }) {
+            state.department = payload
+        },
+        setTotalDepartments(state, { payload }) {
+            state.totalDepartments = payload
+        },
+        setAddDepartment(state, { payload }) {
+            state.addDepartment = payload
         }
     }
 
@@ -46,5 +64,34 @@ export const getAllCategoryAsync = (params) => async (dispatch) => {
         console.log(error)
     }
 }
-export const { setAllPage, setTotal, setCategory } = mainSlice.actions
+
+export const getAllDepartmentAsync = (params) => async (dispatch) => {
+    try {
+        const res = await getAllDepartment(params);
+        console.log(res.data.data.departments)
+        dispatch(
+            setDepartment({
+                data: res.data.data.departments.map((item, index) => {
+                    return { ...item, key: index + 1 };
+                })
+            })
+        );
+
+
+        console.log(setDepartment())
+
+        dispatch(setDepartment(res.data.data.departments))
+        dispatch(setTotalDepartments(res.data.data.totalDepartments))
+        console.log(res.data.data.totalDepartments)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const getAddDepartmentAsync = (params) => async (dispatch) => {
+    const res = await getAddDepartment(params)
+    console.log(res)
+}
+
+export const { setAllPage, setTotal, setCategory, setSelectedCategoryIds, setDepartment, setTotalDepartments, setAddDepartment } = mainSlice.actions
 export default mainSlice.reducer

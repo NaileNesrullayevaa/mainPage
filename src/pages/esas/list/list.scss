@@ -13,9 +13,8 @@
     height: calc(100vh - 112px);
     margin: 88.5px 8.5px 24px 0px;
     border-radius: 8.52px;
-    position: relative;
 
-    
+
 
     .boxess {
         margin: 11px 14px 0px 14px;
@@ -142,12 +141,11 @@
 
     }
 
-    .a {
-        // position: absolute;
-        // left: 14px;
-        // bottom: 14px;
-        margin-top: 14px !important;
-        margin-bottom: 14px !important;
+    .page {
+        
+        margin: 14px 0px 14px 14px;
+  
+
     }
 
 }
@@ -157,54 +155,64 @@
 }
 
 .ant-table {
-    border-radius: none !important;
+    margin: 15px 15px 0px 15px !important;
+    height: 390px !important;
+    border-radius: 5px !important;
     font-family: Roboto !important;
-    height: 435px !important;
     overflow-y: auto;
 
-}
+    .ant-table-thead {
+        .ant-table-cell {
 
-.ant-table-thead {
-    .ant-table-cell {
-        &:last-child {
-            border-radius: 0px !important;
-        }
+            &:last-child {
+                border-radius: 0px !important;
+                border-right: 1px solid #f0f0f0 !important;
 
-    }
-
-    th {
-        font-family: Roboto !important;
-        background-color: white !important;
-        border-top: 1px solid #fefefe;
-        border-top: 1px solid #f0f0f0;
-        padding: 5.6px 0px 5.6px 7px !important;
-
-
-
-
-
-        &:nth-child(1) {
-            padding: 5.6px 2.3px 5.6px 5px !important;
-            border-start-start-radius: 0px !important;
-
+            }
 
         }
 
-        &::before {
-            height: 100% !important;
+        th {
+            font-family: Roboto !important;
+            background-color: white !important;
+            border-top: 1px solid #fefefe;
+            border-top: 1px solid #f0f0f0;
+            padding: 5.6px 0px 5.6px 7px !important;
+
+
+
+
+
+            &:nth-child(1) {
+                padding: 5.6px 2.3px 5.6px 5px !important;
+                border-start-start-radius: 0px !important;
+                border-left: 1px solid #f0f0f0 !important;
+
+
+
+            }
+
+            &::before {
+                height: 100% !important;
+            }
+        }
+
+
+    }
+
+    .ant-table-tbody {
+        .ant-table-cell {
+            border-right: 1px solid #f0f0f0 !important;
+            &:first-child{
+                border-left: 1px solid #f0f0f0 !important;
+            }
+
         }
     }
 
-
 }
 
-.ant-table-body {
-    .ant-table-cell {
-        border-right: 1px solid #f0f0f0 !important;
-        border-left: 1px solid #f0f0f0 !important;
 
-    }
-}
 
 .ant-input-affix-wrapper {
     width: 15% !important;

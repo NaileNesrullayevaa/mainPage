@@ -1,63 +1,94 @@
 .category {
-    width: 22%;
+    width: 200px;
     position: relative;
-
     height: calc(100vh - 112px);
-    margin: 88px 12px 0px 4px;
-    border-radius: 12px;
+    border-radius: 12px !important;
     background-color: white;
     padding: 22px 12px 12px 12px;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-        display: none;
-    }
 
     &.open {
-        width: 8%;
+        width: 100px;
 
-        .boxes {
-            border: none;
+        .category-div {
 
-            .box {
-                .title {
+            .boxes {
+                border: none;
+
+                .box {
+                    .title {
+                        span {
+                            display: none;
+                        }
+                    }
+
                     span {
                         display: none;
                     }
                 }
-
-                span {
-                    display: none;
-                }
             }
         }
+
     }
 
+    .category-div {
 
-    .boxes {
-        border: 1px solid blue;
-        padding: 10px;
-        border: 1px solid #c7c7c7;
-        border-radius: 6px;
-        margin-bottom: 10px;
+        overflow-y: auto;
+        min-height: 600px;
+        height: calc(-155px + 100vh);
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
 
-        .box {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
 
-            .title {
+
+        .boxes {
+            cursor: pointer;
+
+            padding: 10px;
+            border: 1px solid #c7c7c7;
+            border-radius: 6px;
+            margin-bottom: 10px;
+
+            &.active {
+                border: 1px solid blue;
+
+
+                .title {
+                    span {
+                        color: blue;
+                    }
+                }
+
+                span {
+                    color: blue;
+                }
+
+
+            }
+
+            .box {
+                width: 100% !important;
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
 
-                img {
-                    width: 35px;
-                    height: 35px;
-                    object-fit: cover;
-                    margin-left: 4px;
-                    margin-right: 10px;
+
+
+                .title {
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        width: 35px;
+                        height: 35px;
+                        object-fit: cover;
+                        margin-left: 4px;
+                        margin-right: 10px;
+                    }
+
+
                 }
 
 
@@ -65,19 +96,23 @@
 
 
         }
+
+
 
 
     }
 
     .span {
+        border-radius: 50%;
+        background-color: white;
         position: absolute;
+        padding: 0px 6px;
         top: 50%;
-        right: 0;
+        right: -17px;
         transform: translateY(-50%);
         color: #c7c7c7;
         font-size: 32px;
         font-weight: 700;
+
     }
-
-
 }
