@@ -3,6 +3,7 @@ import getAllPage from "../getAllPage"
 import getAllCategory from "../getAllCategory";
 import getAllDepartment from "../getAllDepartment";
 import getAddDepartment from "../getAddDepartment";
+import removeDepartment from "../removeDepartment";
 
 const initialState = {
     data: [],
@@ -11,7 +12,8 @@ const initialState = {
     selectedCategoryIds: [],
     department: [],
     totalDepartments: null,
-    addDepartment: {}
+    addDepartment: {},
+    removeId:null
 }
 
 const mainSlice = createSlice({
@@ -39,6 +41,9 @@ const mainSlice = createSlice({
         },
         setAddDepartment(state, { payload }) {
             state.addDepartment = payload
+        },
+        setRemoveId(state,{payload}){
+            state.removeId=payload
         }
     }
 
@@ -80,11 +85,12 @@ export const getAllDepartmentAsync = (params) => async (dispatch) => {
 
         console.log(setDepartment())
 
-        dispatch(setDepartment(res.data.data.departments))
+        // dispatch(setDepartment(res.data.data.departments))
         dispatch(setTotalDepartments(res.data.data.totalDepartments))
         console.log(res.data.data.totalDepartments)
     } catch (error) {
         console.log(error)
+
     }
 }
 
@@ -93,5 +99,10 @@ export const getAddDepartmentAsync = (params) => async (dispatch) => {
     console.log(res)
 }
 
-export const { setAllPage, setTotal, setCategory, setSelectedCategoryIds, setDepartment, setTotalDepartments, setAddDepartment } = mainSlice.actions
+export const removeDepartmentAsync = (params) => async (dispatch) => {
+    const res = await removeDepartment(params)
+    console.log(res)
+}
+
+export const { setAllPage, setTotal, setCategory, setSelectedCategoryIds, setDepartment, setTotalDepartments, setAddDepartment, setRemoveId } = mainSlice.actions
 export default mainSlice.reducer

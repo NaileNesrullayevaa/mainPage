@@ -7,7 +7,7 @@ import TextArea from 'antd/es/input/TextArea';
 import { Space, Table, Tag } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import getAllDepartment from '../../components/redux/getAllDepartment';
-import { getAddDepartmentAsync, getAllDepartmentAsync } from '../../components/redux/slices/mainSlice';
+import { getAddDepartmentAsync, getAllDepartmentAsync, removeDepartmentAsync } from '../../components/redux/slices/mainSlice';
 import { Switch } from 'antd';
 import more from '../../assets/svgs/more.svg'
 import { Dropdown } from 'antd';
@@ -21,9 +21,12 @@ const Question = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [page, setPage] = useState(1)
     const [form] = Form.useForm()
+    const [messageApi, contextHolder] = message.useMessage();
     const dispatch = useDispatch()
     const department = useSelector((state) => state.main.department)
     const totalDepartments = useSelector((state) => state.main.totalDepartments)
+    const removeId = useSelector((state) => state.main.removeId)
+    console.log(removeId)
     console.log(totalDepartments)
     console.log(department)
     const addDepartment = useSelector((state) => state.main.addDepartment)
@@ -33,20 +36,10 @@ const Question = () => {
             page: page
         }))
     }, [page])
-    useEffect(() => {
-        dispatch(getAddDepartmentAsync({
-            "departments": [
-                {
-                    "name": "string",
-                    "description": "string",
-                    "active": true
-                }
-            ]
 
-        }))
-    }, [])
     const showModal = () => {
         setIsModalOpen(true);
+
     };
     const handleOk = () => {
         setIsModalOpen(false);
@@ -56,10 +49,28 @@ const Question = () => {
 
     };
 
-    const onFinish =values => {
-    
+    const onFinish = values => {
+
         console.log(values)
+        const data = {
+            departments: [
+                {
+                    name: values.name,
+                    description: values.description,
+                    active: true
+                }
+            ]
+
+        }
+        dispatch(getAddDepartmentAsync(data))
+        messageApi.open({
+            type: 'success',
+            content: 'Uğurla əlavə olundu',
+        });
+
+        form.resetFields()
     };
+
 
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
@@ -67,6 +78,12 @@ const Question = () => {
     const confirm = e => {
         console.log(e);
         message.success('Click on Yes');
+        dispatch(removeDepartmentAsync(
+            {
+                departmentId: e.target.id
+            }
+        ))
+     
     };
     const cancel = e => {
         console.log(e);
@@ -80,57 +97,6 @@ const Question = () => {
                         <img src={edit} alt="" />
                         <span>Duzelis et</span>
                     </Button>
-                    <div className="edit">
-                        <Modal
-                            title={
-                                <>
-                                    <div className="head">
-                                        <img src={addCircle} /><span>Duzelis et</span>
-                                    </div>
-                                    <hr />
-                                </>
-                            }
-                            closable={{ 'aria-label': 'Custom Close Button' }}
-                            open={isModalOpen}
-                            onOk={handleOk}
-                            onCancel={handleCancel}
-                            footer={null}
-                        >
-                            <Form
-                                layout='vertical'
-                                onFinish={onFinish}
-                                form={form}
-
-                            >
-                                <Form.Item
-                                    label="Ad"
-                                    name="name"
-                                    rules={[{ required: true, message: 'Please input your name!' }]}
-                                >
-                                    <Input />
-                                </Form.Item>
-
-                                <Form.Item
-                                    label="Izah"
-                                    name="description"
-                                    rules={[{ required: true, message: 'Please input your description!' }]}
-                                >
-                                    <TextArea />
-                                </Form.Item>
-
-                                <Form.Item label={null}>
-                                    <Button className='buttonn one' htmlType="submit">
-                                        Elave Et
-                                    </Button>
-                                    <Button onClick={handleCancel} className='buttonn two' htmlType="button">
-                                        Geri
-                                    </Button>
-                                </Form.Item>
-                            </Form>
-                        </Modal>
-                    </div>
-
-
                 </>
 
             ),
@@ -141,8 +107,9 @@ const Question = () => {
                 <>
                     <Popconfirm
                         description="Silmək istədiyinizdən əminsinizmi ?"
-                        onConfirm={confirm}
+                        onConfirm={()=>confirm()}
                         onCancel={cancel}
+
                         okText="Sil"
                         cancelText="Geri"
                     >
@@ -184,7 +151,7 @@ const Question = () => {
         },
         {
             title: '',
-            dataIndex: "",
+            dataIndex: "id",
             key: 'action',
             render: (i) => (
                 <>
@@ -202,6 +169,7 @@ const Question = () => {
     ];
     return (
         <div className='question'>
+            {contextHolder}
             <div className="left">
                 <Department />
             </div>
@@ -213,6 +181,7 @@ const Question = () => {
                     </Button>
                     <div className="add">
                         <Modal
+                            className='add-modal'
                             title={
                                 <>
                                     <div className="head">
@@ -250,7 +219,7 @@ const Question = () => {
                                 </Form.Item>
 
                                 <Form.Item label={null}>
-                                    <Button className='buttonn one' htmlType="submit">
+                                    <Button className='buttonn one' htmlType="submit" onClick={handleOk}>
                                         Elave Et
                                     </Button>
                                     <Button onClick={handleCancel} className='buttonn two' htmlType="button">

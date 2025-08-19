@@ -71,6 +71,7 @@
 .btn {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     border: none;
     width: 100%;
     border: 0.68px solid #4E47E5;
@@ -118,6 +119,7 @@
     padding: 4px !important;
 
     .ant-dropdown-menu-item {
+
         padding: 0px 0px !important;
     }
 }
@@ -156,17 +158,6 @@
     }
 }
 
-.ant-modal {
-    position: relative !important;
-
-
-    .ant-modal-content {
-
-        position: absolute !important;
-        right: 0px !important;
-        padding-bottom: 0px !important;
-    }
-}
 
 
 
@@ -223,7 +214,7 @@
             margin-left: 2px;
         }
     }
-  
+
 
     hr {
         margin-top: 12px !important;
@@ -232,16 +223,34 @@
 }
 
 
-.ant-popover-inner{
+.ant-popover-inner {
     width: 123px !important;
     height: 82px !important;
     padding: 11px 4px 4px 4px !important;
-    .ant-popover-inner-content{
+
+    .ant-popover-inner-content {
+
         width: 100%;
         display: flex;
         justify-content: flex-start !important;
+
+        .ant-popconfirm-buttons {
+
+            button {
+                margin: 0px !important;
+                width: 54px !important;
+                height: 21px !important;
+
+                &:nth-child(1) {
+                    margin-right: 4px !important;
+
+                }
+            }
+
+        }
     }
 }
+
 .ant-popconfirm-message {
     .ant-popconfirm-message-icon {
         display: none;
@@ -260,7 +269,7 @@
     }
 
     .ant-popconfirm-buttons {
-        button{
+        button {
             width: 54px !important;
             height: 21px !important;
             margin-inline-start: 0px !important;
@@ -271,17 +280,28 @@
 
 
 .ant-btn-sm {
-    padding: 4px 17px !important;
+    padding: 4px 16px !important;
 }
 
 
 .ant-btn-variant-outlined {
-    border: 0.68px solid #828282
-    span{
+    border: 0.68px solid #828282 span {
         color: #4F4F4F;
     }
 }
-.ant-btn-variant-solid{
+
+.ant-btn-variant-solid {
     background-color: red !important;
     margin-left: 5px !important;
+}
+
+.ant-modal-wrap{
+    
+        .add-modal{
+            position: absolute !important;
+            right: 28px !important;
+            top: 90px !important;
+        }
+
+    
 }
