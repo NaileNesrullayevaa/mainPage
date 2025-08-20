@@ -7,7 +7,7 @@ import TextArea from 'antd/es/input/TextArea';
 import { Space, Table, Tag } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import getAllDepartment from '../../components/redux/getAllDepartment';
-import { getAddDepartmentAsync, getAllDepartmentAsync, removeDepartmentAsync } from '../../components/redux/slices/mainSlice';
+import { editDepartmentAsync, getAddDepartmentAsync, getAllDepartmentAsync, removeDepartmentAsync } from '../../components/redux/slices/mainSlice';
 import { Switch } from 'antd';
 import more from '../../assets/svgs/more.svg'
 import { Dropdown } from 'antd';
@@ -26,10 +26,14 @@ const Question = () => {
     const department = useSelector((state) => state.main.department)
     const totalDepartments = useSelector((state) => state.main.totalDepartments)
     const removeId = useSelector((state) => state.main.removeId)
+
+    const [id, setId] = useState(null)
     console.log(removeId)
     console.log(totalDepartments)
-    console.log(department)
     const addDepartment = useSelector((state) => state.main.addDepartment)
+
+
+
     console.log(addDepartment)
     useEffect(() => {
         dispatch(getAllDepartmentAsync({
@@ -39,8 +43,19 @@ const Question = () => {
 
     const showModal = () => {
         setIsModalOpen(true);
+        dispatch(getByIdAsync(id))
+        form.setFieldsValue(
+            {
+                name: values.name,
+                description: values.description
+            }
+        )
+
+
 
     };
+    console.log(id)
+
     const handleOk = () => {
         setIsModalOpen(false);
     };
@@ -50,40 +65,77 @@ const Question = () => {
     };
 
     const onFinish = values => {
-
-        console.log(values)
-        const data = {
-            departments: [
+        if (id) {
+            dispatch(editDepartmentAsync(
                 {
-                    name: values.name,
-                    description: values.description,
-                    active: true
+                    departments: [
+                        {
+                            id: id,
+                            name: values.name,
+                            description: values.description,
+                            active: true
+                        }
+                    ]
                 }
-            ]
+            ))
+
+            form.resetFields()
+
+            dispatch(getAllDepartmentAsync(
+                {
+                    page: page
+                }
+            ))
+
 
         }
-        dispatch(getAddDepartmentAsync(data))
-        messageApi.open({
-            type: 'success',
-            content: 'Uğurla əlavə olundu',
-        });
+        else {
+            console.log(values)
+            const data = {
+                departments: [
+                    {
+                        name: values.name,
+                        description: values.description,
+                        active: true
+                    }
+                ]
 
-        form.resetFields()
+            }
+            dispatch(getAddDepartmentAsync(data))
+            messageApi.open({
+                type: 'success',
+                content: 'Uğurla əlavə olundu',
+            });
+
+            form.resetFields()
+
+            dispatch(getAllDepartmentAsync(
+                {
+                    page: page
+                }
+            ))
+        }
+
+
     };
 
 
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
     };
-    const confirm = e => {
-        console.log(e);
-        message.success('Click on Yes');
+    const confirm = () => {
         dispatch(removeDepartmentAsync(
             {
-                departmentId: e.target.id
+                departmentId: id
             }
         ))
-     
+
+        dispatch(getAllDepartmentAsync(
+            {
+                page: page
+            }
+        ))
+
     };
     const cancel = e => {
         console.log(e);
@@ -107,9 +159,8 @@ const Question = () => {
                 <>
                     <Popconfirm
                         description="Silmək istədiyinizdən əminsinizmi ?"
-                        onConfirm={()=>confirm()}
+                        onConfirm={confirm}
                         onCancel={cancel}
-
                         okText="Sil"
                         cancelText="Geri"
                     >
@@ -156,17 +207,22 @@ const Question = () => {
             render: (i) => (
                 <>
                     <Dropdown menu={{ items }} trigger={['click']}>
-                        <a onClick={e => e.preventDefault()}>
+                        <a onClick={e => {
+                            e.preventDefault()
+                            setId(i)
+                        }}>
                             <Space>
                                 <img src={more} alt="" style={{ width: "24px", height: "24px" }} />
                             </Space>
                         </a>
                     </Dropdown>
+
                 </>
             )
 
         },
     ];
+    console.log(department)
     return (
         <div className='question'>
             {contextHolder}
@@ -185,7 +241,7 @@ const Question = () => {
                             title={
                                 <>
                                     <div className="head">
-                                        <img src={addCircle} /><span>Elave et</span>
+                                        <img src={addCircle} /><span>{id ? "Düzəlt" : "Əlavə et"}</span>
                                     </div>
                                     <hr />
                                 </>
@@ -232,9 +288,10 @@ const Question = () => {
 
                 </div>
                 <div className="body">
-                    <Table className='tab' columns={columns} dataSource={department} />
+
+                    <Table className='tab' columns={columns} dataSource={department.data} pagination={false} />
                 </div>
-                <Pagination onChange={(page) => setPage(page)} className='page' total={totalDepartments} />
+                <Pagination onChange={(page) => setPage(page)} className='page' total={totalDepartments} pageSize={30} />
 
             </div>
         </div>
