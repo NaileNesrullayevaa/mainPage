@@ -7,7 +7,7 @@ import TextArea from 'antd/es/input/TextArea';
 import { Space, Table, Tag } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import getAllDepartment from '../../components/redux/getAllDepartment';
-import { editDepartmentAsync, getAddDepartmentAsync, getAllDepartmentAsync, removeDepartmentAsync } from '../../components/redux/slices/mainSlice';
+import { editDepartmentAsync, getAddDepartmentAsync, getAllDepartmentAsync, getByIdAsync, removeDepartmentAsync, setDepartmentRender } from '../../components/redux/slices/mainSlice';
 import { Switch } from 'antd';
 import more from '../../assets/svgs/more.svg'
 import { Dropdown } from 'antd';
@@ -20,18 +20,22 @@ import { message, Popconfirm } from 'antd';
 const Question = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [page, setPage] = useState(1)
+    const [active,setActive]=useState(false)
     const [form] = Form.useForm()
     const [messageApi, contextHolder] = message.useMessage();
     const dispatch = useDispatch()
     const department = useSelector((state) => state.main.department)
     const totalDepartments = useSelector((state) => state.main.totalDepartments)
     const removeId = useSelector((state) => state.main.removeId)
+    const getById = useSelector((state) => state.main.getById)
 
+    console.log(getById)
     const [id, setId] = useState(null)
     console.log(removeId)
     console.log(totalDepartments)
     const addDepartment = useSelector((state) => state.main.addDepartment)
 
+    const departmentRender = useSelector((state) => state.main.departmentRender)
 
 
     console.log(addDepartment)
@@ -39,21 +43,27 @@ const Question = () => {
         dispatch(getAllDepartmentAsync({
             page: page
         }))
-    }, [page])
+    }, [departmentRender, page])
 
     const showModal = () => {
         setIsModalOpen(true);
         dispatch(getByIdAsync(id))
-        form.setFieldsValue(
-            {
-                name: values.name,
-                description: values.description
-            }
-        )
-
-
 
     };
+
+    useEffect(() => {
+        console.log(getById)
+        console.log(getById?.data?.[0]?.name)
+        if (id) {
+            form.setFieldsValue(
+                {
+                    name: getById.data[0].name,
+                    description: getById.data[0].description
+                }
+            )
+        }
+
+    }, [getById])
     console.log(id)
 
     const handleOk = () => {
@@ -87,6 +97,10 @@ const Question = () => {
                 }
             ))
 
+            messageApi.open({
+                type: 'success',
+                content: 'Uğurla redaktə oldu!',
+            });
 
         }
         else {
@@ -135,18 +149,46 @@ const Question = () => {
                 page: page
             }
         ))
+        // dispatch(setDepartmentRender(prev => !prev))
 
     };
     const cancel = e => {
         console.log(e);
         message.error('Click on No');
     };
+    const change = (record,i) => {
+        dispatch(getByIdAsync(record.id))
+        setActive(i)
+        {active==true? active===false : active===true}
+        dispatch(editDepartmentAsync(
+            {
+                departments: [
+                    {
+                        id: record.id,
+                        name: record.name,
+                        description: record.description,
+                        active:active
+                    }
+                ]
+            }
+        ))
+
+        form.resetFields()
+
+        dispatch(getAllDepartmentAsync(
+            {
+                page: page
+            }
+        ))
+
+    }
     const items = [
         {
             label: (
                 <>
                     <Button className='button btn' onClick={showModal}>
                         <img src={edit} alt="" />
+                        {contextHolder}
                         <span>Duzelis et</span>
                     </Button>
                 </>
@@ -193,9 +235,12 @@ const Question = () => {
             title: 'Status',
             dataIndex: 'active',
             key: 'status',
-            render: (i) => (
+            render: (i, record) => (
                 <>
-                    <Switch defaultChecked onChange={onChange} />
+                    <Switch onClick={() => change(record,i)} checked={i} onChange={onChange} />
+                    {
+                        console.log(i)
+                    }
                 </>
             )
 
@@ -205,7 +250,12 @@ const Question = () => {
             dataIndex: "id",
             key: 'action',
             render: (i) => (
+
                 <>
+                    {
+                        console.log(i)
+
+                    }
                     <Dropdown menu={{ items }} trigger={['click']}>
                         <a onClick={e => {
                             e.preventDefault()

@@ -14,9 +14,10 @@ const initialState = {
     selectedCategoryIds: [],
     department: [],
     totalDepartments: null,
-    addDepartment: {},
-    removeId:null,
-    getById:null
+    // addDepartment: {},
+    // removeId:null,
+    getById: null,
+    departmentRender: false
 }
 
 const mainSlice = createSlice({
@@ -42,15 +43,18 @@ const mainSlice = createSlice({
         setTotalDepartments(state, { payload }) {
             state.totalDepartments = payload
         },
-        setAddDepartment(state, { payload }) {
-            state.addDepartment = payload
-        },
-        setRemoveId(state,{payload}){
-            state.removeId=payload
-        },
+        // setAddDepartment(state, { payload }) {
+        //     state.addDepartment = payload
+        // },
+        // setRemoveId(state,{payload}){
+        //     state.removeId=payload
+        // },
 
-        setGetById(state,{payload}){
-            state.getById=payload
+        setGetById(state, { payload }) {
+            state.getById = payload
+        },
+        setDepartmentRender(state, { payload }) {
+            state.departmentRender = payload
         }
     }
 
@@ -104,21 +108,28 @@ export const getAllDepartmentAsync = (params) => async (dispatch) => {
 export const getAddDepartmentAsync = (params) => async (dispatch) => {
     const res = await getAddDepartment(params)
     console.log(res)
+    dispatch(setDepartmentRender(prev => !prev))
+
 }
 
 export const removeDepartmentAsync = (params) => async (dispatch) => {
     const res = await removeDepartment(params)
     console.log(res)
+    dispatch(setDepartmentRender(prev => !prev))
+
 }
 
 export const getByIdAsync = (params) => async (dispatch) => {
     const res = await getById(params)
-    console.log(res)
+    console.log(res.data)
+    dispatch(setGetById(res.data))
 }
 export const editDepartmentAsync = (params) => async (dispatch) => {
     const res = await editDepartment(params)
     console.log(res)
+    dispatch(setDepartmentRender(prev => !prev))
+
 }
 
-export const { setAllPage, setTotal, setCategory, setSelectedCategoryIds, setDepartment, setTotalDepartments, setAddDepartment, setRemoveId,setById } = mainSlice.actions
+export const { setAllPage, setTotal, setCategory, setSelectedCategoryIds, setDepartment, setTotalDepartments, setGetById, setDepartmentRender } = mainSlice.actions
 export default mainSlice.reducer

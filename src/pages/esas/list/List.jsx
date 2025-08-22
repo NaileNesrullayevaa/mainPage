@@ -87,8 +87,8 @@ const List = () => {
     return (
         <>
 
-            <Table className='table' dataSource={data} columns={columns} />
-            <Pagination onChange={(page) => setPage(page)} className='page' defaultCurrent={1} total={total.totalObjects} />
+            <Table className='table' dataSource={data} columns={columns} pagination={false} />
+            <Pagination onChange={(page) => setPage(page)} className='page' defaultCurrent={1} total={total.totalObjects} pageSize={30} />
 
         </>
 

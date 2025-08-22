@@ -4,17 +4,20 @@ import MainLayout from '../components/layouts/MainLayout'
 import Login from '../pages/login/Login'
 import Esas from '../pages/esas/Home'
 import Question from '../pages/question/Question'
+import DigitalLogin from '../pages/digitalLogin/DigitalLogin'
 
 const MyRouter = () => {
     return (
         <Routes>
+            <Route path='/asan' element={<DigitalLogin />} />
+
             <Route path='/' element={<Login />} />
 
             <Route path='' element={<MainLayout />}>
 
                 <Route path='yaradici/home' element={<Esas />} />
 
-                <Route path='yaradici/question' element={<Question/>} />
+                <Route path='yaradici/question' element={<Question />} />
 
 
             </Route>
