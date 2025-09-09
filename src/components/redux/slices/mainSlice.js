@@ -6,6 +6,7 @@ import getAddDepartment from "../getAddDepartment";
 import removeDepartment from "../removeDepartment";
 import getById from "../getById";
 import editDepartment from "../editDepartment";
+import getCertificate from "../getCertificate";
 
 const initialState = {
     data: [],
@@ -17,7 +18,8 @@ const initialState = {
     // addDepartment: {},
     // removeId:null,
     getById: null,
-    departmentRender: false
+    departmentRender: false,
+    getCertificate:null
 }
 
 const mainSlice = createSlice({
@@ -55,6 +57,9 @@ const mainSlice = createSlice({
         },
         setDepartmentRender(state, { payload }) {
             state.departmentRender = payload
+        },
+        setGetCertificate(state,{payload}){
+            state.getCertificate=payload
         }
     }
 
@@ -131,5 +136,11 @@ export const editDepartmentAsync = (params) => async (dispatch) => {
 
 }
 
-export const { setAllPage, setTotal, setCategory, setSelectedCategoryIds, setDepartment, setTotalDepartments, setGetById, setDepartmentRender } = mainSlice.actions
+export const getCertificateAsync=()=>async()=>{
+    const res=await getCertificate()
+    console.log(res.userInfo)
+    dispatch(setGetCertificate(res))
+}
+
+export const { setAllPage, setTotal, setCategory, setSelectedCategoryIds, setDepartment, setTotalDepartments, setGetById, setDepartmentRender, setGetCertificate } = mainSlice.actions
 export default mainSlice.reducer

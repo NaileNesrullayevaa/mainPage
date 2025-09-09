@@ -28,17 +28,11 @@ const Question = () => {
     const totalDepartments = useSelector((state) => state.main.totalDepartments)
     const removeId = useSelector((state) => state.main.removeId)
     const getById = useSelector((state) => state.main.getById)
-
-    console.log(getById)
     const [id, setId] = useState(null)
-    console.log(removeId)
-    console.log(totalDepartments)
     const addDepartment = useSelector((state) => state.main.addDepartment)
-
     const departmentRender = useSelector((state) => state.main.departmentRender)
 
 
-    console.log(addDepartment)
     useEffect(() => {
         dispatch(getAllDepartmentAsync({
             page: page
@@ -64,7 +58,6 @@ const Question = () => {
         }
 
     }, [getById])
-    console.log(id)
 
     const handleOk = () => {
         setIsModalOpen(false);
@@ -83,7 +76,7 @@ const Question = () => {
                             id: id,
                             name: values.name,
                             description: values.description,
-                            active: true
+                            active: getById.data[0].active
                         }
                     ]
                 }
@@ -107,6 +100,7 @@ const Question = () => {
             console.log(values)
             const data = {
                 departments: [
+                    
                     {
                         name: values.name,
                         description: values.description,
@@ -129,8 +123,6 @@ const Question = () => {
                 }
             ))
         }
-
-
     };
 
 
@@ -157,7 +149,6 @@ const Question = () => {
         message.error('Click on No');
     };
     const change = (record,i) => {
-        dispatch(getByIdAsync(record.id))
         setActive(i)
         {active==true? active===false : active===true}
         dispatch(editDepartmentAsync(
@@ -238,9 +229,7 @@ const Question = () => {
             render: (i, record) => (
                 <>
                     <Switch onClick={() => change(record,i)} checked={i} onChange={onChange} />
-                    {
-                        console.log(i)
-                    }
+                
                 </>
             )
 
@@ -252,10 +241,6 @@ const Question = () => {
             render: (i) => (
 
                 <>
-                    {
-                        console.log(i)
-
-                    }
                     <Dropdown menu={{ items }} trigger={['click']}>
                         <a onClick={e => {
                             e.preventDefault()
@@ -272,9 +257,8 @@ const Question = () => {
 
         },
     ];
-    console.log(department)
     return (
-        <div className='question'>
+       <div className='question'>
             {contextHolder}
             <div className="left">
                 <Department />
@@ -341,7 +325,7 @@ const Question = () => {
 
                     <Table className='tab' columns={columns} dataSource={department.data} pagination={false} />
                 </div>
-                <Pagination onChange={(page) => setPage(page)} className='page' total={totalDepartments} pageSize={30} />
+                <Pagination onChange={(page) => setPage(page)} className='page' total={totalDepartments} current={page} />
 
             </div>
         </div>

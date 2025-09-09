@@ -35,6 +35,11 @@ const Category = () => {
         }))
     }, [])
 
+
+
+    // useEffect(() => {
+    //     dispatch(getCertificateAsync())
+    // }, [])
     return (
         <>
             <div className={`category ${category ? "open" : ''}`}>
